@@ -39,5 +39,8 @@ USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
 
+COPY        ./updater.sh /updater.sh
+CMD         [ "/bin/bash", "/updater.sh"]
+
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
