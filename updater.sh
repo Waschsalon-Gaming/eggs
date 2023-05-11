@@ -5,7 +5,6 @@ log_file="darkrp-update.log"
 repo_url="https://github.com/FPtje/DarkRP"
 repository_path="/home/container/garrysmod/gamemodes"
 repository_name="darkrp"
-sleep_duration=86400  # 24 hours
 
 # Function to log messages to a file
 log_message() {
