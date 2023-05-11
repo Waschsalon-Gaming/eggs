@@ -14,5 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Set Vars
+      run: |
+          export TARGETOS=linux
+          export TARGETARCH=amd64
     - name: Build the Docker image
       run: docker build . --network=host
