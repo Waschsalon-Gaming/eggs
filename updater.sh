@@ -4,7 +4,6 @@
 log_file="darkrp-update.log"
 repo_url="https://github.com/FPtje/DarkRP"
 repository_path="/home/container/garrysmod/gamemodes"
-repository_name="darkrp"
 
 # Function to log messages to a file
 log_message() {
@@ -26,18 +25,22 @@ update_repository() {
     log_message "Updating DarkRP repository"
     cd "$repository_path" || exit 1
 
-    rm -rf "$repository_name"
+    cp "$GAMEMODE/$GAMEMODE.txt" "tmp.txt"
+
+    rm -rf "$GAMEMODE"
     git clone -q "$repo_url"
-    mv "DarkRP" "$repository_name"
+    mv "DarkRP" "$GAMEMODE"
     cd - || exit 1
+
+    mv "tmp.txt" "$GAMEMODE/$GAMEMODE.txt"
 
     last_commit_hash=$(git ls-remote "$repo_url" HEAD | awk '{print $1;}')
     log_message "Updated DarkRP to commit $last_commit_hash"
 }
 
 # Main script
-if [ -d "$repository_path" && -d "$repository_path/$repository_name" ]; then
-    cd "$repository_path/$repository_name" || exit 1
+if [ -d "$repository_path" && -d "$repository_path/$GAMEMODE" ]; then
+    cd "$repository_path/$GAMEMODE" || exit 1
 
     last_commit_hash=$(git rev-parse HEAD)
     cd - || exit 1
