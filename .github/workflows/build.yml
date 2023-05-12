@@ -34,4 +34,8 @@ jobs:
             ghcr.io/waschsalon-gaming/eggs:gmod
       - name: Build only (no push)
         if: github.event_name == 'pull_request'
-        run: docker build -t ghcr.io/waschsalon-gaming/eggs:gmod .
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile
+          platforms: linux/amd64
