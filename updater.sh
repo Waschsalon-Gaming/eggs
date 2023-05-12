@@ -39,7 +39,7 @@ update_repository() {
 }
 
 # Main script
-if [ -d "$repository_path" && -d "$repository_path/$GAMEMODE" ]; then
+if [[ -d "$repository_path" && -d "$repository_path/$GAMEMODE" ]]; then
     cd "$repository_path/$GAMEMODE" || exit 1
 
     last_commit_hash=$(git rev-parse HEAD)
@@ -52,5 +52,5 @@ if [ -d "$repository_path" && -d "$repository_path/$GAMEMODE" ]; then
     fi
 else
     mkdir $repository_path
-    update_repository()
+    update_repository
 fi
